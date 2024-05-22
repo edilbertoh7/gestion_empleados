@@ -58,13 +58,13 @@ export default function DeleteUserForm({ className = '' }) {
             <Modal show={confirmingUserDeletion} onClose={closeModal}>
                 <form onSubmit={deleteUser} className="p-6">
                     <h2 className="text-lg font-medium text-gray-900">
-                        Are you sure you want to delete your account?
+                        Estas seguro de eliminar tu cuenta?
                     </h2>
 
                     <p className="mt-1 text-sm text-gray-600">
                     Una vez que se elimine su cuenta, todos sus recursos y datos se eliminarán permanentemente.
                     </p>
-                    <p className="mt-5 text-sm text-gray-600">
+                    <p className="mt-5 text-sm text-black">
                     ingrese su contraseña para confirmar que desea eliminar permanentemente su cuenta.
                     </p>
 
