@@ -18,6 +18,12 @@ class UsersSeeder extends Seeder
             'last_name' => 'Herrera',
             'email' => 'edilbertoh7@gmail.com',
             'password' => bcrypt('12345678'),
-         ]);
+        ]);
+        User::create([
+            'name' => 'administrador',
+            'last_name' => 'del sistema',
+            'email' => 'admin@admin.com',
+            'password' => bcrypt('administrador'),
+        ]);
     }
 }

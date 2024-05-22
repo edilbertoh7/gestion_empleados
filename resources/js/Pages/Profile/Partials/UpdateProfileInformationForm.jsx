@@ -10,6 +10,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
 
     const { data, setData, patch, errors, processing, recentlySuccessful } = useForm({
         name: user.name,
+        last_name: user.last_name,
         email: user.email,
     });
 
@@ -22,10 +23,10 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
     return (
         <section className={className}>
             <header>
-                <h2 className="text-lg font-medium text-gray-900">Profile Information</h2>
+                <h2 className="text-lg font-medium text-gray-900">Infrmación de perfil</h2>
 
                 <p className="mt-1 text-sm text-gray-600">
-                    Update your account's profile information and email address.
+                    Actualice la informacion de su perfil, la contraseña de acceso y correo electronico.
                 </p>
             </header>
 
@@ -45,6 +46,25 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
 
                     <InputError className="mt-2" message={errors.name} />
                 </div>
+
+
+                <div>
+                    <InputLabel htmlFor="last_name" value="Apellido" />
+
+                    <TextInput
+                        id="last_name"
+                        className="mt-1 block w-full"
+                        value={data.last_name}
+                        onChange={(e) => setData('last_name', e.target.value)}
+                        required
+                        isFocused
+                        autoComplete="last_name"
+                    />
+
+                    <InputError className="mt-2" message={errors.last_name} />
+                </div>
+
+
 
                 <div>
                     <InputLabel htmlFor="email" value="Email" />
@@ -85,7 +105,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                 )}
 
                 <div className="flex items-center gap-4">
-                    <PrimaryButton disabled={processing}>Save</PrimaryButton>
+                    <PrimaryButton disabled={processing}>Guardar</PrimaryButton>
 
                     <Transition
                         show={recentlySuccessful}

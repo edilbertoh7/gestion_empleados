@@ -17,24 +17,24 @@ class ProfileController extends Controller
      * Display the user's profile form.
      */
     public function edit(Request $request): Response
-    {
+    { 
+        // envio a la vista los datos del usuario
         return Inertia::render('Profile/Edit', [
             'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
             'status' => session('status'),
         ]);
     }
 
-    /**
-     * Update the user's profile information.
-     */
+   
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
+        //valido los datos recibidos desde el formulario y hago la actualización
         $request->user()->fill($request->validated());
 
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
         }
-
+        $request->user()->last_name = $request->last_name;
         $request->user()->save();
 
         return Redirect::route('profile.edit');
