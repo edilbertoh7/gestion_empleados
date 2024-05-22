@@ -1,8 +1,13 @@
+composer install para instalar dependencias de composer
+npm install para instalar dependencias de node
+
 para ejecutar la plicacion 
 
 php artisan serve
 
 npm run dev
+
+
 
 esta es la configuracion para el envio e correos para el restablecimiento de contraseña
 MAIL_MAILER=smtp

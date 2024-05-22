@@ -35,6 +35,12 @@ class ProfileController extends Controller
             $request->user()->email_verified_at = null;
         }
         $request->user()->last_name = $request->last_name;
+        $request->user()->address = $request->address;
+        $request->user()->phone = $request->phone;
+        $request->user()->document_type = $request->document_type;
+        $request->user()->document_number = $request->document_number;
+        $request->user()->gender = $request->gender;
+
         $request->user()->save();
 
         return Redirect::route('profile.edit');
