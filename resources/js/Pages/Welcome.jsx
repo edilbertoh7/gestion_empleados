@@ -26,22 +26,22 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                         {auth.user ? (
                             <Link
                                 href={route('dashboard')}
-                                className="font-semibold text-gray-900 hover:text-blue-600   focus:outline focus:outline-2 focus:rounded-sm"
+                                className="font-semibold p-2 rounded-lg text-white hover:text-blue-600 bg-blue-600 hover:bg-blue-200  focus:outline focus:outline-2 focus:rounded-sm"
                             >
-                                Inicio
+                                Ver Empleados
                             </Link>
                         ) : (
                             <>
                                 <Link
                                     href={route('login')}
-                                    className="font-semibold text-gray-900 hover:text-blue-600   focus:outline focus:outline-2 focus:rounded-sm"
+                                    className="font-semibold p-2 rounded-lg text-white hover:text-blue-600 bg-blue-600 hover:bg-blue-200  focus:outline focus:outline-2 focus:rounded-sm"
                                 >
                                     Iniciar Sesion
                                 </Link>
 
                                 <Link
                                     href={route('register')}
-                                    className="ms-4 font-semibold text-gray-900 hover:text-blue-600  focus:outline focus:outline-2 focus:rounded-sm"
+                                    className="ms-4 font-semibold p-2 rounded-lg text-white hover:text-blue-600 bg-blue-600 hover:bg-blue-200  focus:outline focus:outline-2 focus:rounded-sm"
                                 >
                                     Registate
                                 </Link>

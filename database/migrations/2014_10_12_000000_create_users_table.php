@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('document_type');
             $table->string('document_number')->unique();
             $table->string('birth_date');
+            $table->boolean('active')->default(1);
+
             $table->rememberToken();
             $table->timestamps();
         });

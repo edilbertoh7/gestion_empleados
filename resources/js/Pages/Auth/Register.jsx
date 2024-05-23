@@ -6,17 +6,18 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
 
-export default function Register() {
-    const { data, setData, post, processing, errors, reset } = useForm({
-        name: '',
-        last_name: '',
-        address: '',
-        phone: '',
-        document_type: '',
-        document_number: '',
-        birth_date: '',
-        gender: '',
-        email: '',
+export default function Register({ user, action, edit, btn, id }) {
+    console.log(edit);
+    const { data, setData, post, put, processing, errors, reset } = useForm({
+        name: user ? user.name : '',
+        last_name: user ? user.last_name : '',
+        address: user ? user.address : '',
+        phone: user ? user.phone : '',
+        document_type: user ? user.document_type : '',
+        document_number: user ? user.document_number : '',
+        birth_date: user ? user.birth_date : '',
+        gender: user ? user.gender : '',
+        email: user ? user.email : '',
         password: '',
         password_confirmation: '',
     });
@@ -29,8 +30,15 @@ export default function Register() {
 
     const submit = (e) => {
         e.preventDefault();
+        if (action === 'create') {
+            post(route('users.create'));
+        } else {
+            post(route('register'));
+        }
+        if (edit) {
+            put(route('users.update', { id }));
+        }
 
-        post(route('register'));
     };
 
     return (
@@ -192,7 +200,7 @@ export default function Register() {
                 </div>
 
                 <div className=" mt-5 grid grid-flow-row sm:grid-flow-col gap-2">
-
+                    {/* los campos de contraseña solo sean requeridos cuasndo se va a registrar un nuevo empleado */}
                     <div className="mt-4">
                         <InputLabel htmlFor="password" value="Password" />
 
@@ -204,7 +212,7 @@ export default function Register() {
                             className="mt-1 block w-full"
                             autoComplete="new-password"
                             onChange={(e) => setData('password', e.target.value)}
-                            required
+                            required={user ? false : true}
                         />
 
                         <InputError message={errors.password} className="mt-2" />
@@ -221,7 +229,7 @@ export default function Register() {
                             className="mt-1 block w-full"
                             autoComplete="new-password"
                             onChange={(e) => setData('password_confirmation', e.target.value)}
-                            required
+                            required={user ? false : true}
                         />
                         <InputError message={errors.password_confirmation} className="mt-2" />
                     </div>
@@ -232,11 +240,16 @@ export default function Register() {
                         href={route('login')}
                         className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
-                        Ya estas registrado?
+                        {!edit && (
+                            <p>
+
+                                Ya estas registrado?
+                            </p>
+                        )}
                     </Link>
 
                     <PrimaryButton className="ms-4" disabled={processing}>
-                        Registrar
+                        {btn}
                     </PrimaryButton>
                 </div>
             </form>

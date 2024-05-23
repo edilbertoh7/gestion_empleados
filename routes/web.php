@@ -31,6 +31,12 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard',[App\Http\Controllers\UserController::class, 'index'])->name('dashboard');
+    Route::get('NewUser',[App\Http\Controllers\UserController::class, 'create'])->name('users.create');
+    Route::get('User/{id}',[App\Http\Controllers\UserController::class, 'show'])->name('users.show');
+    Route::post('NewUser',[App\Http\Controllers\UserController::class, 'store'])->name('users.create');
+    Route::get('UserEdit/{id}/edit',[App\Http\Controllers\UserController::class, 'edit'])->name('users.edit');
+    Route::put('User/{id}',[App\Http\Controllers\UserController::class, 'update'])->name('users.update');
+    Route::get('Users/{id}',[App\Http\Controllers\UserController::class, 'destroy'])->name('users.destroy');
 });
 
 Route::middleware('auth')->group(function () {

@@ -27,7 +27,8 @@ class User extends Authenticatable
         'gender',
         'document_type',
         'document_number',
-        'birth_date'
+        'birth_date',
+        'active'
     ];
 
     /**

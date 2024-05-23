@@ -21,7 +21,7 @@ class RegisteredUserController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render('Auth/Register');
+        return Inertia::render('Auth/Register',['btn'=>'Registrar']);
     }
 
     /**
@@ -53,7 +53,6 @@ class RegisteredUserController extends Controller
             'document_number' => $request->document_number,
             'birth_date' => $request->birth_date,
             'gender' => $request->gender,
-
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
