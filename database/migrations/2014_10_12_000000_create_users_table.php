@@ -25,9 +25,13 @@ return new class extends Migration
             $table->string('document_number')->unique();
             $table->string('birth_date');
             $table->boolean('active')->default(1);
-
+            $table->unsignedBigInteger('department')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            
+            $table->foreign('document_type')->references('document_type')->on('document_types');
+            $table->foreign('gender')->references('gender_type')->on('gender');
+            $table->foreign('department')->references('id')->on('departments');
         });
     }
 

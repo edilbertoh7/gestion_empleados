@@ -7,28 +7,24 @@ import { Link, Head } from '@inertiajs/react';
 
 
 
-const index = ({ users, auth, permisos }) => {
-  console.log(users);
-  // const { props } = usePage();
-  // console.log(auth.userpermissions);
-
+const index = ({ users, auth }) => {
 
   const columns = React.useMemo(
     () => [
-      // {
-      //   Header: 'ID',
-      //   accessor: 'id',
-      // },
-
       {
-        Header: '',
+        Header: 'nombre completo',
         accessor: 'name',
       },
       {
-        Header: ' ',
+        Header: 'Departamento',
         accessor: 'last_name',
       },
-      ,
+      {
+        Header: 'acciones',
+        accessor: 'depname',
+      },
+      
+      
 
     ],
     []
@@ -74,7 +70,7 @@ const index = ({ users, auth, permisos }) => {
 
           <DataTable 
           auth={auth} columns={columns} data={usersToShow} infodata={users} pageSize={pageSize} setpageSize={setpageSize} 
-          currentPage={currentPage + 1}  colspan={3}
+          currentPage={currentPage + 1}  colspan={2}
           
           ver={true} 
           rutaver={'users.show'} 

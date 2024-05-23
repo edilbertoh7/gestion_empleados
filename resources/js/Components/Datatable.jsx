@@ -77,7 +77,8 @@ const DataTable = ({
                 <thead className="text-xs  uppercase  bg-gray-700 text-gray-400">
                     <tr className="px-6 py-3">
                         {columns.map((column) => (
-                            <th colSpan={colspan} scope="col" className="px-6 py-3 text-white" key={column.Header}>{column.Header} {secondaryName} </th>
+                            // <th colSpan={colspan} scope="col" className="px-6 py-3 text-white" key={column.Header}>{column.Header} {secondaryName} </th>
+                            <th colSpan={colspan} scope="col" className="px-6 py-3 text-white" key={column.Header}>{column.Header}  </th>
                         ))}
                     </tr>
                 </thead>

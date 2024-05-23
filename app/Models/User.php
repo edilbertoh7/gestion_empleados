@@ -31,6 +31,10 @@ class User extends Authenticatable
         'active'
     ];
 
+    public function department()
+    {
+        return $this->belongsTo(Department::class, 'department_id');
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

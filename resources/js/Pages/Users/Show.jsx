@@ -10,7 +10,7 @@ const show = ({ user, auth, success }) => {
 
 
   const { props } = usePage();
-  console.log(success);
+  // console.log(user);
   // console.log(props);
 
   return (
@@ -28,7 +28,7 @@ const show = ({ user, auth, success }) => {
             <thead className="text-xs uppercase bg-gray-700 text-gray-400">
               <tr>
                 <th scope="col" className="px-6 py-3">
-                {user.name} {user.last_name}
+                {user[0].name} {user[0].last_name}
                 </th>
                 <th scope="col" className="px-6 py-3">
                   <NavLink
@@ -41,16 +41,20 @@ const show = ({ user, auth, success }) => {
             </thead>
             <tbody>
               <tr className={`border-b bg-red-50 border-gray-700`}>
-                <th colSpan={2} scope="row" className="px-6 py-4 font-medium whitespace-nowrap text-white">
+                {user.map((user, index)=>(
+                  
+                <th key={index} colSpan={2} scope="row" className="px-6 py-4 font-medium whitespace-nowrap text-white">
                   <p className='pt-3'>Nombre: {user.name} {user.last_name} </p>
                   <p className='pt-3'>Dirección: {user.address} </p>
                   <p className='pt-3'>Telefono: {user.phone} </p>
                   <p className='pt-3'>Identificación: {user.document_type} {user.document_number} </p>
                   <p className='pt-3'>Fecha de Nacimiento: {user.birth_date} </p>
+                  <p className='pt-3'>Departamento: {user.depname} </p>
                   <p className='pt-3'>Correo: {user.email} </p>
                   <p className='pt-3'>Telefono: {user.phone}</p>
                  
                 </th>
+                ))  }
               </tr>
             </tbody>
           </table>

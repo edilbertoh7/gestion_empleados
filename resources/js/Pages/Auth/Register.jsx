@@ -6,8 +6,8 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
 
-export default function Register({ user, action, edit, btn, id }) {
-    console.log(edit);
+export default function Register({ user, action, edit, btn, id, document_types, gender_types }) {
+    // console.log(gender_types);
     const { data, setData, post, put, processing, errors, reset } = useForm({
         name: user ? user.name : '',
         last_name: user ? user.last_name : '',
@@ -118,16 +118,19 @@ export default function Register({ user, action, edit, btn, id }) {
                     <div>
                         <InputLabel htmlFor="document_type" value="Tipo de Documento" />
 
-                        <TextInput
+                        <select
                             id="document_type"
-                            name="document_type"
                             value={data.document_type}
-                            className="mt-1 block w-full"
-                            autoComplete="document_type"
-                            isFocused={true}
                             onChange={(e) => setData('document_type', e.target.value)}
-                            required
-                        />
+                            className="mt-1 block w-full select_text border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm "
+                        >
+                            <option value="">Selecciona un tipo de documento</option>
+                            {document_types.map((document) => (
+                                <option key={document.id} value={document.document_type}>
+                                    {document.document_name}
+                                </option>
+                            ))}
+                        </select>
                         <InputError message={errors.document_type} className="mt-2" />
                     </div>
 
@@ -169,16 +172,19 @@ export default function Register({ user, action, edit, btn, id }) {
                     <div >
                         <InputLabel htmlFor="gender" value="Genero" />
 
-                        <TextInput
+                        <select
                             id="gender"
-                            name="gender"
                             value={data.gender}
-                            className="mt-1 block w-full"
-                            autoComplete="gender"
-                            isFocused={true}
                             onChange={(e) => setData('gender', e.target.value)}
-                            required
-                        />
+                            className="mt-1 block w-full select_text border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm "
+                        >
+                            <option value="">Selecciona un genero</option>
+                            {gender_types.map((gender) => (
+                                <option key={gender.id} value={gender.gender_type}>
+                                    {gender.name}
+                                </option>
+                            ))}
+                        </select>
                         <InputError message={errors.gender} className="mt-2" />
                     </div>
 

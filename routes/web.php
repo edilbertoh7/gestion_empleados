@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use Inertia\Inertia;
 
 /*
@@ -30,13 +32,23 @@ Route::get('/', function () {
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/dashboard',[App\Http\Controllers\UserController::class, 'index'])->name('dashboard');
-    Route::get('NewUser',[App\Http\Controllers\UserController::class, 'create'])->name('users.create');
-    Route::get('User/{id}',[App\Http\Controllers\UserController::class, 'show'])->name('users.show');
-    Route::post('NewUser',[App\Http\Controllers\UserController::class, 'store'])->name('users.create');
-    Route::get('UserEdit/{id}/edit',[App\Http\Controllers\UserController::class, 'edit'])->name('users.edit');
-    Route::put('User/{id}',[App\Http\Controllers\UserController::class, 'update'])->name('users.update');
-    Route::get('Users/{id}',[App\Http\Controllers\UserController::class, 'destroy'])->name('users.destroy');
+    Route::get('/dashboard',[UserController::class, 'index'])->name('dashboard');
+    Route::get('NewUser',[UserController::class, 'create'])->name('users.create');
+    Route::get('User/{id}',[UserController::class, 'show'])->name('users.show');
+    Route::post('NewUser',[UserController::class, 'store'])->name('users.create');
+    Route::get('UserEdit/{id}/edit',[UserController::class, 'edit'])->name('users.edit');
+    Route::put('User/{id}',[UserController::class, 'update'])->name('users.update');
+    Route::get('Users/{id}',[UserController::class, 'destroy'])->name('users.destroy');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/departments',[UserController::class, 'index'])->name('departments');
+    Route::get('NewDepartmnet',[DepartmentController::class, 'create'])->name('departments.create');
+    Route::get('Department/{id}',[DepartmentController::class, 'show'])->name('departments.show');
+    Route::post('NewDepartmnet',[DepartmentController::class, 'store'])->name('departments.create');
+    Route::get('DepartmentEdit/{id}/edit',[DepartmentController::class, 'edit'])->name('departments.edit');
+    Route::put('department/{id}',[DepartmentController::class, 'update'])->name('departments.update');
+    Route::get('departments/{id}',[DepartmentController::class, 'destroy'])->name('departments.destroy');
 });
 
 Route::middleware('auth')->group(function () {
