@@ -3,6 +3,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { usePage } from '@inertiajs/react';
 import NavLink from '@/Components/NavLink';
 import { switAlert } from '@/functions/functions'
+import { Link, Head } from '@inertiajs/react';
 
 
 
@@ -18,7 +19,7 @@ const show = ({ user, auth, success }) => {
     user={auth.user}
     // header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Dashboard_2</h2>}
     >
-
+<Head title="Empleados" />
 
       <div className='table-pading'>
         {props.success && <div className="mb-4 font-medium text-xl text-green-600">{switAlert(props.success)}</div>}
@@ -40,7 +41,7 @@ const show = ({ user, auth, success }) => {
               </tr>
             </thead>
             <tbody>
-              <tr className={`border-b bg-red-50 border-gray-700`}>
+              <tr className={`border-b bg-white border-gray-700`}>
                 {user.map((user, index)=>(
                   
                 <th key={index} colSpan={2} scope="row" className="px-6 py-4 font-medium whitespace-nowrap text-white">

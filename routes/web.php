@@ -42,7 +42,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/departments',[UserController::class, 'index'])->name('departments');
+    Route::get('/departments',[DepartmentController::class, 'index'])->name('departments');
     Route::get('NewDepartmnet',[DepartmentController::class, 'create'])->name('departments.create');
     Route::get('Department/{id}',[DepartmentController::class, 'show'])->name('departments.show');
     Route::post('NewDepartmnet',[DepartmentController::class, 'store'])->name('departments.create');

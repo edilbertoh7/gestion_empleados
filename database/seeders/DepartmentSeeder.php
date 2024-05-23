@@ -35,5 +35,9 @@ class DepartmentSeeder extends Seeder
             'name'=>'Tecnologia',
             'description' => 'Encargado del desarrollo y mantenimiento de sistemas informaticos.',
         ]);
+        DB::table('departments')->insert([
+            'name'=>'Servicio al cliente',
+            'description' => 'Encargado de la atención al cliente.',
+        ]);
     }
 }

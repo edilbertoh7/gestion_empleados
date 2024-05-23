@@ -25,7 +25,6 @@ class UserController extends Controller
         ->where('users.active', '=', 1)
         ->get();
         
-        
         return Inertia::render('Users/Index', [
             'users' => $users,
           
@@ -117,7 +116,28 @@ class UserController extends Controller
         ]);
 
         $user = User::findOrFail($id);
-        $user->update($request->all());
+
+       if ($request->password) {
+            $request->validate([
+                'password' => ['confirmed', Rules\Password::defaults()],
+            ]);
+            $user->update([
+                'password' => $request->password,
+            ]);
+        }
+        $user->update([
+            'name' => $request->name,
+            'last_name' => $request->last_name,
+            'address' => $request->address,
+            'phone' => $request->phone,
+            'document_type' => $request->document_type,
+            'document_number' => $request->document_number,
+            'birth_date' => $request->birth_date,
+            'gender' => $request->gender,
+            'email' => $request->email,
+        ]);
+     
+
         // return redirect()->route('dashboard');
         return $this->show($id, 'Usuario actualizado correctamente');
     }

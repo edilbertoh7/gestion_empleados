@@ -19,3 +19,18 @@ d.name AS depname, d.description
 INNER JOIN departments d 
 ON (u.department = d.id)
 WHERE u.id = 3 
+
+-- consulta para mostra todos los tipos de documentos del sistema
+SELECT * FROM document_types 
+
+-- consulta para mostrar todos los departamentos
+SELECT * FROM departments
+
+-- consulta para mostrar solo los departamentos activos
+SELECT * FROM departments d 
+WHERE d.active = 1
+
+
+-- consulta para mostrar un departamento por el id
+SELECT * FROM departments d
+WHERE d.id = 2

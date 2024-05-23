@@ -48,7 +48,7 @@ export default function Register({ user, action, edit, btn, id, document_types, 
             <form onSubmit={submit}>
                 <div className=" mt-5 grid grid-flow-row sm:grid-flow-col gap-2">
                     <div>
-                        <InputLabel htmlFor="name" value="Name" />
+                        <InputLabel htmlFor="name" value="Nombre" />
 
                         <TextInput
                             id="name"
@@ -58,7 +58,7 @@ export default function Register({ user, action, edit, btn, id, document_types, 
                             autoComplete="name"
                             isFocused={true}
                             onChange={(e) => setData('name', e.target.value)}
-                            required
+                            
                         />
                         <InputError message={errors.name} className="mt-2" />
                     </div>
@@ -74,7 +74,7 @@ export default function Register({ user, action, edit, btn, id, document_types, 
                             autoComplete="last_name"
                             isFocused={true}
                             onChange={(e) => setData('last_name', e.target.value)}
-                            required
+                            
                         />
                         <InputError message={errors.last_name} className="mt-2" />
                     </div>
@@ -92,7 +92,7 @@ export default function Register({ user, action, edit, btn, id, document_types, 
                             autoComplete="address"
                             isFocused={true}
                             onChange={(e) => setData('address', e.target.value)}
-                            required
+                            
                         />
                         <InputError message={errors.address} className="mt-2" />
                     </div>
@@ -108,7 +108,7 @@ export default function Register({ user, action, edit, btn, id, document_types, 
                             autoComplete="phone"
                             isFocused={true}
                             onChange={(e) => setData('phone', e.target.value)}
-                            required
+                            
                         />
                         <InputError message={errors.phone} className="mt-2" />
                     </div>
@@ -145,7 +145,7 @@ export default function Register({ user, action, edit, btn, id, document_types, 
                             autoComplete="document_number"
                             isFocused={true}
                             onChange={(e) => setData('document_number', e.target.value)}
-                            required
+                            
                         />
                         <InputError message={errors.document_number} className="mt-2" />
                     </div>
@@ -157,12 +157,13 @@ export default function Register({ user, action, edit, btn, id, document_types, 
                             id="birth_date"
                             name="birth_date"
                             type="date"
+                            max={new Date().toISOString().split("T")[0]}
                             value={data.birth_date}
                             className="mt-1 block w-full"
                             autoComplete="birth_date"
                             isFocused={true}
                             onChange={(e) => setData('birth_date', e.target.value)}
-                            required
+                            
                         />
                         <InputError message={errors.birth_date} className="mt-2" />
                     </div>
@@ -199,7 +200,7 @@ export default function Register({ user, action, edit, btn, id, document_types, 
                             className="mt-1 block w-full"
                             autoComplete="username"
                             onChange={(e) => setData('email', e.target.value)}
-                            required
+                            
                         />
                         <InputError message={errors.email} className="mt-2" />
                     </div>

@@ -146,6 +146,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                         <TextInput
                             id="birth_date"
                             type="date"
+                            max={new Date().toISOString().split("T")[0]}
                             className="mt-1 block w-full"
                             value={data.birth_date}
                             onChange={(e) => setData('birth_date', e.target.value)}
