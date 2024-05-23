@@ -6,17 +6,13 @@ import { findRole, permissionInRole, switAlerdelete, switAlert } from '@/functio
 const DataTable = ({
     auth, columns, data, infodata, pageSize, setpageSize,
     currentPage, colspan,
-    ver, rutaver, permisoVer, editar, rutaeditar, permisoEditar, eliminar, rutaeliminar, permisoEliminar,
+     rutaver, rutaeditar, rutaeliminar, 
     primaryName, secondaryName }) => {
     // console.log(auth);
     const [filterInput, setFilterInput] = useState('');
     const [filteredData, setFilteredData] = useState(data);
     // console.log(filteredData);
 
-
-    // setTimeout(() => {
-    //     setFilteredData(data);
-    // },100)
     const handleSearch = (e) => {
         const value = e.target.value || '';
         setFilterInput(value);
@@ -77,7 +73,7 @@ const DataTable = ({
                 <thead className="text-xs  uppercase  bg-gray-700 text-gray-400">
                     <tr className="px-6 py-3">
                         {columns.map((column) => (
-                            // <th colSpan={colspan} scope="col" className="px-6 py-3 text-white" key={column.Header}>{column.Header} {secondaryName} </th>
+
                             <th colSpan={colspan} scope="col" className="px-6 py-3 text-white" key={column.Header}>{column.Header}  </th>
                         ))}
                     </tr>
@@ -88,40 +84,36 @@ const DataTable = ({
                             {columns.map((column, colIndex) => (
                                 <td key={colIndex} className="px-6 py-4 font-medium  whitespace-nowrap text-white">{row[column.accessor]}</td>
                             ))}
-                            {ver && (
 
-                                <td>
-                                    
-                                        <NavLink
-                                            className='inline-flex items-center  bg-blue-600 border border-transparent rounded-md font-semibold navbarlink-text text-white uppercase tracking-widest hover:bg-blue-400  focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150'
-                                            href={route(rutaver, { id: row.id })} 
-                                            >
-                                            Ver
-                                        </NavLink>
-                                   
-                                </td>
-                            )}
-                            {editar && (
-                                <td>
-                                 
-                                        <NavLink
-                                            className='inline-flex items-center  bg-green-600 border border-transparent rounded-md font-semibold navbarlink-text text-white uppercase tracking-widest hover:bg-green-400  focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150'
-                                            href={route(rutaeditar, { id: row.id })} 
-                                            >
-                                            Editar
-                                        </NavLink>
-                                    
-                                </td>
-                            )}
-                            {eliminar && (
-                                <td>
-                                   
-                                        <RedButon
-                                            onClick={() => { switAlerdelete(`Estas seguro de eliminar  ${primaryName} ${row.name} ${row.last_name? row.last_name : ''}`, rutaeliminar, row.id, `el ${primaryName} ${row.name} ${row.last_name} ha sido eliminado`, `se ha cancelado la eliminación del ${primaryName} ${row.name} ${row.last_name? row.last_name : ''}`) }}
-                                        >Eliminar</RedButon>
-                                    
-                                </td>
-                            )}
+                            <td>
+
+                                <NavLink
+                                    className='inline-flex items-center  bg-blue-600 border border-transparent rounded-md font-semibold navbarlink-text text-white uppercase tracking-widest hover:bg-blue-400  focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150'
+                                    href={route(rutaver, { id: row.id })}
+                                >
+                                    Ver
+                                </NavLink>
+
+                            </td>
+
+                            <td>
+
+                                <NavLink
+                                    className='inline-flex items-center  bg-green-600 border border-transparent rounded-md font-semibold navbarlink-text text-white uppercase tracking-widest hover:bg-green-400  focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150'
+                                    href={route(rutaeditar, { id: row.id })}
+                                >
+                                    Editar
+                                </NavLink>
+
+                            </td>
+
+                            <td>
+                                <RedButon
+                                    onClick={() => { switAlerdelete(`Estas seguro de eliminar  ${primaryName} ${row.name} ${row.last_name ? row.last_name : ''}`, rutaeliminar, row.id, `el ${primaryName} ${row.name} ${row.last_name ? row.last_name : ''} ha sido eliminado`, `se ha cancelado la eliminación del ${primaryName} ${row.name} ${row.last_name ? row.last_name : ''}`) }}
+                                >Eliminar</RedButon>
+
+                            </td>
+
 
                         </tr>
                     ))}

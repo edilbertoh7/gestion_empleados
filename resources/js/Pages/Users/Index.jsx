@@ -3,9 +3,6 @@ import DataTable from '@/Components/Datatable';
 import NavLink from '@/Components/NavLink';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Link, Head } from '@inertiajs/react';
-// import { findRole, permissionInRole } from '@/functions/functions';
-
-
 
 const index = ({ users, auth }) => {
 
@@ -23,8 +20,6 @@ const index = ({ users, auth }) => {
         Header: 'acciones',
         accessor: 'depname',
       },
-      
-      
 
     ],
     []
@@ -33,17 +28,13 @@ const index = ({ users, auth }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [pageSize, setpageSize] = useState(5);
 
-  // console.log(currentPage+1);
-
   const handlePreviewPage = (users) => {
-    // Actualizar el estado o realizar cualquier otra lógica para mostrar la siguiente página
     setCurrentPage(prevPage => prevPage - 1);
     // console.log(pageSize);
   };
   const handleNextPage = (users) => {
-    // Actualizar el estado o realizar cualquier otra lógica para mostrar la siguiente página
-    setCurrentPage(prevPage => prevPage + 1);
 
+    setCurrentPage(prevPage => prevPage + 1);
   };
 
   const handleChange = (event) => {
@@ -53,37 +44,27 @@ const index = ({ users, auth }) => {
   const usersToShow = users.slice(currentPage * pageSize, (currentPage + 1) * pageSize);
 
   const pageCountNext = Math.ceil(users.length / pageSize) - 1;
-  const pageCountprev = 0// Math.ceil(users.length /pageSize)-2;
-  // console.log(pageCountprev);
-  // console.log(currentPage);
+  const pageCountprev = 0
+
   return (<>
-<Head title="Empleados" />
+    <Head title="Empleados" />
     <AuthenticatedLayout
       user={auth.user}
-      
-      // auth={auth}
-    // header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Dashboard_2</h2>}
+
     >
       <div className='table-pading' >
 
         <div className="relative overflow-x-auto">
 
-          <DataTable 
-          auth={auth} columns={columns} data={usersToShow} infodata={users} pageSize={pageSize} setpageSize={setpageSize} 
-          currentPage={currentPage + 1}  colspan={2}
-          
-          ver={true} 
-          rutaver={'users.show'} 
-          permisoVer ={'users.show'} 
-          editar={true} 
-          rutaeditar={'users.edit'} 
-          permisoEditar ={'users.edit'} 
-          eliminar={true} 
-          rutaeliminar={'users.destroy'} 
-          permisoEliminar ={'users.destroy'}
-          primaryName={'Empleado'} 
-          secondaryName ={'Empleados Talento Pro'}
-           />
+          <DataTable
+            auth={auth} columns={columns} data={usersToShow} infodata={users} pageSize={pageSize} setpageSize={setpageSize}
+            currentPage={currentPage + 1} colspan={2}
+            rutaver={'users.show'}
+            rutaeditar={'users.edit'}
+            rutaeliminar={'users.destroy'}
+            primaryName={'Empleado'}
+            secondaryName={'Empleados Talento Pro'}
+          />
           {/* Agregar controles de paginación */}
           <button disabled={currentPage == pageCountprev} onClick={() => setCurrentPage(0)}
             className='start_end_button inline-flex items-center  bg-blue-600 border border-transparent rounded-md font-semibold navbarlink-text text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150' >
@@ -109,10 +90,7 @@ const index = ({ users, auth }) => {
           </button>
 
         </div>
-
         {/* Botón flotante en el lado derecho */}
-        {/* {(permissionInRole(auth.userpermissions, 'users.create')) || (findRole(auth, 'Admin')) ? (*/}
-
         <div className="fixed bottom-5 right-5">
           <NavLink className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
             href={route('users.create')} active={route().current('users.create')}
@@ -121,12 +99,10 @@ const index = ({ users, auth }) => {
             Nuevo Empleado
           </NavLink>
         </div>
-        
-        {/* ) : ('')} */} 
 
       </div>
     </AuthenticatedLayout>
-    </>
+  </>
   )
 }
 

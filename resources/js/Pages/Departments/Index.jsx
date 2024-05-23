@@ -3,9 +3,6 @@ import DataTable from '@/Components/Datatable';
 import NavLink from '@/Components/NavLink';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Link, Head } from '@inertiajs/react';
-// import { findRole, permissionInRole } from '@/functions/functions';
-
-
 
 const index = ({ departments, auth }) => {
 
@@ -20,9 +17,6 @@ const index = ({ departments, auth }) => {
         Header: 'acciones',
         accessor: 'depname',
       },
-      
-      
-
     ],
     []
   );
@@ -30,15 +24,10 @@ const index = ({ departments, auth }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [pageSize, setpageSize] = useState(5);
 
-  // console.log(currentPage+1);
-
   const handlePreviewPage = (departments) => {
-    // Actualizar el estado o realizar cualquier otra lógica para mostrar la siguiente página
     setCurrentPage(prevPage => prevPage - 1);
-    // console.log(pageSize);
   };
   const handleNextPage = (departments) => {
-    // Actualizar el estado o realizar cualquier otra lógica para mostrar la siguiente página
     setCurrentPage(prevPage => prevPage + 1);
 
   };
@@ -50,16 +39,11 @@ const index = ({ departments, auth }) => {
   const departmentsToShow = departments.slice(currentPage * pageSize, (currentPage + 1) * pageSize);
 
   const pageCountNext = Math.ceil(departments.length / pageSize) - 1;
-  const pageCountprev = 0// Math.ceil(departments.length /pageSize)-2;
-  // console.log(pageCountprev);
-  // console.log(currentPage);
+  const pageCountprev = 0
   return (<>
 <Head title="Departamentos" />
     <AuthenticatedLayout
       user={auth.user}
-      
-      // auth={auth}
-    // header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Dashboard_2</h2>}
     >
       <div className='table-pading' >
 
@@ -68,16 +52,9 @@ const index = ({ departments, auth }) => {
           <DataTable 
           auth={auth} columns={columns} data={departmentsToShow} infodata={departments} pageSize={pageSize} setpageSize={setpageSize} 
           currentPage={currentPage + 1}  colspan={3}
-          
-          ver={true} 
           rutaver={'departments.show'} 
-          permisoVer ={'departments.show'} 
-          editar={true} 
           rutaeditar={'departments.edit'} 
-          permisoEditar ={'departments.edit'} 
-          eliminar={true} 
           rutaeliminar={'departments.destroy'} 
-          permisoEliminar ={'departments.destroy'}
           primaryName={'Departamento'} 
           secondaryName ={'Empleados Talento Pro'}
            />
@@ -108,7 +85,6 @@ const index = ({ departments, auth }) => {
         </div>
 
         {/* Botón flotante en el lado derecho */}
-        {/* {(permissionInRole(auth.userpermissions, 'departments.create')) || (findRole(auth, 'Admin')) ? (*/}
 
         <div className="fixed bottom-5 right-5">
           <NavLink className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
@@ -119,8 +95,6 @@ const index = ({ departments, auth }) => {
             Nuevo Departamento
           </NavLink>
         </div>
-        
-        {/* ) : ('')} */} 
 
       </div>
     </AuthenticatedLayout>
